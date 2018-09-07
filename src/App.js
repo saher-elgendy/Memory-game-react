@@ -11,21 +11,20 @@ class App extends Component {
 
   shuffleCards = (arr) => {	
 
-    let shuffledCards = [];
-    let randomIcon;
+     let shuffledCards = [], randomIcon; 
+     while(arr.length) { 
+	   randomIcon = arr[Math.floor(Math.random() * arr.length)];
+       shuffledCards.push(randomIcon); 
+       arr.splice(arr.indexOf(randomIcon), 1);
+      }
 
-    while(shuffledCards.length < arr.length){
-      randomIcon = arr[Math.floor(Math.random() * arr.length)];
-      if(!shuffledCards.includes(randomIcon)) shuffledCards.push(randomIcon);
-    }
-     return shuffledCards;
+      return shuffledCards
   }
-  
 
   render() {
   	const { icons } = this.state;
     return (
-     <Deck icons={ this.shuffleCards(icons).concat(this.shuffleCards(icons)) }/>
+     <Deck icons={ this.shuffleCards(icons.concat(icons))/*.concat(this.shuffleCards(icons))*/ }/>
     );
   }
 }
